@@ -1,6 +1,8 @@
 import {EOL} from 'os'
 import { stdout, stdin } from 'process';
 import { up,cd, ls } from './commands/navigation.js';
+import { os } from './commands/os.js';
+import {calcHash} from './commands/hash.js';
 
 export const commandReducer = async (command = '') =>{
   const arrCommands = command.split(' ');
@@ -38,10 +40,10 @@ export const commandReducer = async (command = '') =>{
       console.log('rm');
       break;
     case 'os':
-      console.log('os');
+      await os(arrCommands[1]);
       break;
     case 'hash':
-      console.log('hash');
+      await calcHash(arrCommands[1]).catch(()=>{ console.log('Invalid input')});
       break;
     case 'compress':
       console.log('compress');
@@ -52,7 +54,7 @@ export const commandReducer = async (command = '') =>{
     case EOL:
       return EOL;
     default:
-
+      
       console.log('Invalid input')
        //process.stdout.write(`Received: ${line}` + EOL);
       //break;
