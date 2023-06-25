@@ -37,7 +37,7 @@ export async function app () {
     
   });*/
   rl.on('line',async (line) => { await commandReducer(line)
-    .catch((error)=>{ console.log('Operation failed')})
+    .catch((error)=>{ console.log(error.message)})
     .finally(()=> {console.log(`You are currently in ${cwd()}`);})
   });
   rl.on('error', () => {console.log ('error')});
