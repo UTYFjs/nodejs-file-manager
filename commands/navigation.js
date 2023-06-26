@@ -1,7 +1,7 @@
 import {chdir, cwd} from 'process';
 import {resolve, normalize} from 'path';
 import { readdir } from 'fs/promises';
-import {checkDirectory} from '../utils/files.js'
+import {checkDirectory} from '../utils/files.js';
 
 export const  up = async () => {
   const newPath = resolve(cwd(), '..');

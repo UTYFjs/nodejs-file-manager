@@ -43,9 +43,8 @@ export const commandReducer = async (command = '') =>{
         await os(arrCommands[1]);
         break;
       case 'hash':
-        await calcHash(arrCommands[1]).catch((err) => {
-          console.log('Invalid input');
-        });
+        await calcHash(arrCommands[1])
+        //.catch((err) => {console.log('Invalid input');});
         break;
       case 'compress':
         await compress(arrCommands[1], arrCommands[2]).catch((err)=> {console.log(err.message)});

@@ -1,5 +1,5 @@
 import {stat} from 'fs/promises';
-import { sep, resolve } from 'path';
+import { sep, resolve, parse } from 'path';
 
 export const checkPath = async (path) =>{
   try{
@@ -14,11 +14,25 @@ export const checkPath = async (path) =>{
 
 export const checkDirectory = async (path) =>{
   const isPath = await checkPath(path);
-  console.log('result ispath', isPath);
   if(isPath){
     const resolvedPath = resolve(path + sep);
-    console.log('path with sep', resolvedPath);
     return resolvedPath;
-  } else {throw new Error('Invalid Input');}
+  } else {throw new Error('Operation failed');}
   
+}
+
+export const checkFile = async (path) =>{
+  const isPath = await checkPath(path);
+  if (isPath) {
+    const resolvedPath = resolve(process.cwd(), path);
+    const parsedPath = parse(resolvedPath);
+    if(parsedPath.base){
+      return resolvedPath;
+    }
+    throw new Error('Operation failed');
+  } else {
+    throw new Error('Operation failed');
+  }
+  
+
 }
