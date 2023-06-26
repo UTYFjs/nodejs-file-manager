@@ -37,10 +37,10 @@ export async function app () {
     
   });*/
   rl.on('line',async (line) => { await commandReducer(line)
-    .catch((error)=>{ console.log(error.message)})
+    .catch((error)=>{ console.log('app', error.message)})
     .finally(()=> {console.log(`You are currently in ${cwd()}`);})
   });
-  rl.on('error', () => {console.log ('error')});
+  rl.on('error', () => {console.log ('error readline')});
   rl.on('close', () => {
     console.log(`Thank you for using File Manager, ${userName} , goodbye!`);
     process.exit(0);

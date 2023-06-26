@@ -5,7 +5,7 @@ import { resolve, parse } from 'path';
 import { cwd} from 'process';
 
 export const cat = async (path) => {
-
+  
   const readStream = createReadStream(path);
   readStream.on('data', (chunk)=> {
     console.log(chunk.toString());
