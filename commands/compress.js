@@ -2,6 +2,7 @@ import zlib from 'zlib';
 import fs from 'fs';
 import { resolve } from 'path';
 import { cwd } from 'process';
+import { pipeline } from 'stream/promises';
 
 
 export const compress = async (pathFile ='', pathDestination='') =>{
@@ -11,11 +12,13 @@ export const compress = async (pathFile ='', pathDestination='') =>{
   try {
   const resolvePathFile = resolve(cwd(), pathFile);
   const resolvePathDestination = resolve(cwd(), pathDestination);
+  
   const readStream = fs.createReadStream(resolvePathFile);
   const writeStream = fs.createWriteStream(resolvePathDestination);
   const brotli = zlib.createBrotliCompress();
 
-  readStream.pipe(brotli).pipe(writeStream);    
+  pipeline(readStream, brotli, writeStream)
+  //readStream.pipe(brotli).pipe(writeStream);    
   } catch (err) {
     throw new Error('Operation failed');
   }

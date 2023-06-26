@@ -4,6 +4,7 @@ import { up,cd, ls } from './commands/navigation.js';
 import { os } from './commands/os.js';
 import {calcHash} from './commands/hash.js';
 import {compress, decompress} from './commands/compress.js';
+import { cat, add, rn, cp,mv, remove } from './commands/files.js';
 
 export const commandReducer = async (command = '') =>{
   const arrCommands = command.split(' ');
@@ -21,36 +22,40 @@ export const commandReducer = async (command = '') =>{
         await ls();
         break;
       case 'cat':
+        await cat(arrCommands[1]);
         console.log('cat');
         break;
       case 'add':
+        await add(arrCommands[1]);
         console.log('add');
         break;
-      case 'cd':
-        console.log('cd');
-        break;
       case 'rn':
+        await rn(arrCommands[1], arrCommands[2]);
         console.log('rn');
         break;
       case 'cp':
+        console.log('параметры в ср передаваемые', arrCommands[1], arrCommands[2]);
+        await cp(arrCommands[1], arrCommands[2]);
         console.log('cp');
         break;
       case 'mv':
+        await mv(arrCommands[1], arrCommands[2]);
         console.log('mv');
         break;
       case 'rm':
+        await remove(arrCommands[1]);
         console.log('rm');
         break;
       case 'os':
         await os(arrCommands[1]);
         break;
       case 'hash':
-        await calcHash(arrCommands[1]).catch(() => {
+        await calcHash(arrCommands[1]).catch((err) => {
           console.log('Invalid input');
         });
         break;
       case 'compress':
-        await compress(arrCommands[1], arrCommands[2]);
+        await compress(arrCommands[1], arrCommands[2]).catch((err)=> {console.log(err.message)});
         break;
       case 'decompress':
         await decompress(arrCommands[1], arrCommands[2]);

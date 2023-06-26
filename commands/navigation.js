@@ -25,8 +25,9 @@ export const ls = async () => {
   console.table(fileList);
 }
 export const cd = async (path='') => {
+  const resolvedPath = resolve(path)
   const currentDirectory = cwd();
-  const newPath = resolve(currentDirectory, path);
+  const newPath = resolve(currentDirectory, resolvedPath);
   chdir(newPath);
 
 };
