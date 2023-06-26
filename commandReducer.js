@@ -60,7 +60,6 @@ export const commandReducer = async (command = '') =>{
         console.log('Invalid input default switch');
     }
   }catch(err){
-    console.log('из редьюсера', err.message);
     throw new Error(err.message);
   }
   
