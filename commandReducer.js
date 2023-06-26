@@ -6,7 +6,7 @@ import {compress, decompress} from './commands/compress.js';
 import { cat, add, rn, cp,mv, remove } from './commands/files.js';
 
 export const commandReducer = async (command = '') =>{
-  const arrCommands = command.split(' ');
+  const arrCommands = command.split(' ').filter((item)=> {if (item!=='') return true});
   try{
     switch (arrCommands[0]) {
       case '.exit':

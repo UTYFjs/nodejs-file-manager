@@ -11,17 +11,17 @@ export const checkPath = async (path) =>{
 }
 
 export const checkDirectory = async (path) =>{
-  const isPath = await checkPath(path);
+  const isPath = await checkPath(path.trim());
   if(isPath){
-    const resolvedPath = resolve(path + sep);
+    const resolvedPath = resolve(path.trim() + sep);
     return resolvedPath;
   } else {throw new Error('Operation failed');}
 }
 
 export const checkFile = async (path) =>{
-  const isPath = await checkPath(path);
+  const isPath = await checkPath(path.trim());
   if (isPath) {
-    const resolvedPath = resolve(process.cwd(), path);
+    const resolvedPath = resolve(process.cwd(), path.trim());
     const parsedPath = parse(resolvedPath);
     if(parsedPath.base){
       return resolvedPath;
