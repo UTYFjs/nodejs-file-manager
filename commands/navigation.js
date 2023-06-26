@@ -1,5 +1,5 @@
 import {chdir, cwd} from 'process';
-import {resolve, normalize} from 'path';
+import {resolve} from 'path';
 import { readdir } from 'fs/promises';
 import {checkDirectory} from '../utils/files.js';
 

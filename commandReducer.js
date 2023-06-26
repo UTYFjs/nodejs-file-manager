@@ -1,5 +1,4 @@
 import {EOL} from 'os'
-import { stdout, stdin } from 'process';
 import { up,cd, ls } from './commands/navigation.js';
 import { os } from './commands/os.js';
 import {calcHash} from './commands/hash.js';
@@ -44,20 +43,17 @@ export const commandReducer = async (command = '') =>{
         break;
       case 'hash':
         await calcHash(arrCommands[1])
-        //.catch((err) => {console.log('Invalid input');});
         break;
       case 'compress':
-        await compress(arrCommands[1], arrCommands[2]).catch((err)=> {console.log(err.message)});
+        await compress(arrCommands[1], arrCommands[2])
         break;
       case 'decompress':
-        await decompress(arrCommands[1], arrCommands[2]).catch((err) => {
-          console.log(err.message);
-        });
+        await decompress(arrCommands[1], arrCommands[2])
         break;
       case EOL:
         return EOL;
       default:
-        console.log('Invalid input default switch');
+        console.log('Invalid input');
     }
   }catch(err){
     throw new Error(err.message);

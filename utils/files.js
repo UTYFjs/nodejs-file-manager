@@ -8,8 +8,6 @@ export const checkPath = async (path) =>{
   } catch {
     return false
   }
-  //const result = await stat(path).catch(()=> {throw new Error('invalid input')});
-  //console.log('result after stat', result);
 }
 
 export const checkDirectory = async (path) =>{
@@ -18,7 +16,6 @@ export const checkDirectory = async (path) =>{
     const resolvedPath = resolve(path + sep);
     return resolvedPath;
   } else {throw new Error('Operation failed');}
-  
 }
 
 export const checkFile = async (path) =>{
@@ -33,6 +30,4 @@ export const checkFile = async (path) =>{
   } else {
     throw new Error('Operation failed');
   }
-  
-
 }

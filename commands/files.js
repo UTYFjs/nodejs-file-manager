@@ -45,12 +45,10 @@ export const mv = async (pathToFile, pathToNewDir) => {
   if (!pathToFile || !pathToNewDir) throw new Error('Invalid input');
   await cp(pathToFile, pathToNewDir);
   await rm(pathToFile);
-
 };
 
 export const remove = async (path) => {
   if (!path) throw new Error('Invalid input');
   const resolvedPath = await checkFile(path);
   await rm(resolvedPath);
-
 };

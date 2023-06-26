@@ -8,5 +8,4 @@ export const calcHash =  async (path)=>{
   const content = await readFile(resolvedPath);
   const hashResult = crypto.createHash('sha256').update(content).digest('hex');
   console.log(hashResult);
-
 }
