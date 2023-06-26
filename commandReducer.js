@@ -50,7 +50,9 @@ export const commandReducer = async (command = '') =>{
         await compress(arrCommands[1], arrCommands[2]).catch((err)=> {console.log(err.message)});
         break;
       case 'decompress':
-        await decompress(arrCommands[1], arrCommands[2]);
+        await decompress(arrCommands[1], arrCommands[2]).catch((err) => {
+          console.log(err.message);
+        });
         break;
       case EOL:
         return EOL;
